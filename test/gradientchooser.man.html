@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+Copyright Armin Junge
+-->
+<html>
+   <head>
+      <title>Test gradientchooser manually</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="stylesheets/jquery.mobile.min.css">
+      <link rel="stylesheet" href="../src/style.less">
+      <script src="javascripts/jquery.min.js"></script>
+      <script src="javascripts/jquery.mobile.min.js"></script>
+      <script src="../src/gradientchooser.js"></script>
+      <script type="text/javascript">
+         $(function(){
+            $('#gradient').gradientchooser('option', {
+               actionIcon: '',
+               colorFrom: '#ff0000',
+               colorTo: 'rgb(0, 10, 255)'
+            })
+            $('#gradient-action').gradientchooser('option', {
+               actionIcon: 'refresh',
+               clickFrom: function(){
+                  $('#gradient-action').gradientchooser('colorFrom', 'rgb(255, 0, 255)')
+               },
+               clickTo: function(){
+                  $('#gradient-action').gradientchooser('colorTo', '#00ff00')
+               },
+               apply: function(){
+                  let grad = $('#gradient-action')
+                  alert(grad.gradientchooser('colorFrom') + ' - ' + grad.gradientchooser('colorTo'))
+               }
+            })
+         })
+      </script>
+   </head>
+   <body>
+      <div id="gradient" data-role="gradientchooser" data-collapsed="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+         <h1>Show Gradient</h1>
+      </div>
+      <div id="gradient-action" data-role="gradientchooser">
+         <h1>Choose Gradient</h1>
+      </div>
+   </body>
+</html>
