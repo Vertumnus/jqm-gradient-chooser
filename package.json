@@ -1,7 +1,7 @@
 {
    "name": "jqm-gradient-chooser",
    "description": "A collapsible widget to specify a gradient for jQuery Mobile",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "keywords": [
       "jQuery",
       "mobile",

@@ -57,6 +57,14 @@ describe('Widget', function(){
          gradient.gradientchooser('option', 'actionIcon', 'recycle')
          assert(gradient.find('.ui-gradient .ui-block-b a').hasClass('ui-icon-recycle'), 'Action button got not correct icon')
       })
+      it('should change the color from icon', function(){
+         gradient.gradientchooser('option', 'fromIcon', 'arrow-r')
+         assert(gradient.find('.ui-gradient .ui-block-a a').hasClass('ui-icon-arrow-r'), 'Color from button got not correct icon')
+      })
+      it('should change the color to icon', function(){
+         gradient.gradientchooser('option', 'toIcon', 'arrow-l')
+         assert(gradient.find('.ui-gradient .ui-block-c a').hasClass('ui-icon-arrow-l'), 'Color to button got not correct icon')
+      })
       it('should change the color from', function(){
          gradient.gradientchooser('option', 'colorFrom', '#ff0000')
          assert(gradient.gradientchooser('colorFrom') === '#ff0000', 'Color From not changed to red')
