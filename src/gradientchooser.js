@@ -6,6 +6,8 @@
 $.widget('vertumnus.gradientchooser', $.mobile.collapsible, {
    options: {
       actionIcon: 'action',
+      fromIcon: 'carat-r',
+      toIcon: 'carat-l',
       colorFrom: '#000000',
       colorTo: '#000000'
    },
@@ -13,13 +15,13 @@ $.widget('vertumnus.gradientchooser', $.mobile.collapsible, {
       let content = `
 <div class="ui-grid-b ui-gradient">
    <div class="ui-block-a">
-      <a href="#" class="ui-btn ui-corner-all ui-btn-icon-notext ui-icon-carat-r"></a>
+      <a href="#" class="ui-btn ui-corner-all ui-btn-icon-notext ui-icon-${this.options.fromIcon}"></a>
    </div>
    <div class="ui-block-b">
       <a href="#" class="ui-btn ui-corner-all ui-btn-icon-notext ui-icon-${this.options.actionIcon}"></a>
    </div>
    <div class="ui-block-c">
-      <a href="#" class="ui-btn ui-corner-all ui-btn-icon-notext ui-icon-carat-l"></a>
+      <a href="#" class="ui-btn ui-corner-all ui-btn-icon-notext ui-icon-${this.options.toIcon}"></a>
    </div>
 </div>`
       
@@ -33,13 +35,19 @@ $.widget('vertumnus.gradientchooser', $.mobile.collapsible, {
       // register click event on action button
       this.element.find('.ui-gradient .ui-block-b a').click({ widget: this, cb: 'apply' }, this._click)
       
-      this._colorFrom = this.options.colorFrom
-      this._colorTo = this.options.colorTo
+      this.colorFrom(this.options.colorFrom)
+      this.colorTo(this.options.colorTo)
    },
    _setOption: function(key, value){
       switch(key){
          case 'actionIcon':
             value = this._replaceActionIcon(value)
+            break
+         case 'fromIcon':
+            value = this._replaceFromIcon(value)
+            break
+         case 'toIcon':
+            value = this._replaceToIcon(value)
             break
          case 'colorFrom':
             this.colorFrom(value)
@@ -54,10 +62,18 @@ $.widget('vertumnus.gradientchooser', $.mobile.collapsible, {
       event.data.widget._trigger(event.data.cb, event)
    },
    _replaceActionIcon: function(iconname){
+      return this._replaceIcon(this.element.find('.ui-gradient .ui-block-b a'), iconname)
+   },
+   _replaceFromIcon: function(iconname){
+      return this._replaceIcon(this.element.find('.ui-gradient .ui-block-a a'), iconname)
+   },
+   _replaceToIcon: function(iconname){
+      return this._replaceIcon(this.element.find('.ui-gradient .ui-block-c a'), iconname)
+   },
+   _replaceIcon: function(button, iconname){
       if(!iconname)
          iconname = 'no'
-      let actionButton = this.element.find('.ui-gradient .ui-block-b a')
-      actionButton.removeClass(function(index, classname){
+      button.removeClass(function(index, classname){
          return classname.split(' ').filter(function(value){
             return /ui-icon-.+/.test(value)
          }).toString()

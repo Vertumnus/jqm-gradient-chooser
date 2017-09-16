@@ -20,12 +20,11 @@ Copyright Armin Junge
                colorTo: 'rgb(0, 10, 255)'
             })
             $('#gradient-action').gradientchooser('option', {
-               actionIcon: 'refresh',
                clickFrom: function(){
-                  $('#gradient-action').gradientchooser('colorFrom', 'rgb(255, 0, 255)')
+                  $('#gradient-action').gradientchooser('colorFrom', 'rgb(0, 100, 0)')
                },
                clickTo: function(){
-                  $('#gradient-action').gradientchooser('colorTo', '#00ff00')
+                  $('#gradient-action').gradientchooser('colorTo', '#0077ee')
                },
                apply: function(){
                   let grad = $('#gradient-action')
@@ -36,11 +35,16 @@ Copyright Armin Junge
       </script>
    </head>
    <body>
-      <div id="gradient" data-role="gradientchooser" data-collapsed="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
-         <h1>Show Gradient</h1>
-      </div>
-      <div id="gradient-action" data-role="gradientchooser">
-         <h1>Choose Gradient</h1>
+      <div data-role="page">
+         <div class="ui-content">
+            <div id="gradient" data-role="gradientchooser" data-collapsed="false" data-collapsed-icon="carat-d" 
+                 data-expanded-icon="carat-u" data-iconpos="right" data-from-icon="arrow-r" data-to-icon="arrow-l">
+               <h1>Show Gradient</h1>
+            </div>
+            <div id="gradient-action" data-role="gradientchooser" data-action-icon="recycle" data-color-from="#444444" data-color-to="#aaaaaa">
+               <h1>Choose Gradient</h1>
+            </div>
+         </div>
       </div>
    </body>
 </html>
